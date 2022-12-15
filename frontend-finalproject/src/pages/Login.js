@@ -48,11 +48,11 @@ function LoginPage({isLoggedIn, setIsLoggedIn, setUserInformation}) {
 
     return(
         <>
-    {/* <div>
+    <div>
     <video autoPlay loop mute className="loginPage-backgroundVideo" preload="auto">
         <source src={backgroundVideo} type='video/mp4' />
     </video>
-    </div> */}
+    </div>
 
             <div className="PageWrapper-Login">
               <h1> Archive(s)</h1>

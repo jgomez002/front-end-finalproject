@@ -19,7 +19,7 @@ function Header({isLoggedIn, setIsLoggedIn, setUserInformation}){
         <header>
         <nav>
             {isLoggedIn && (<Link to="/">
-              <p> Profile</p>  
+              <p> My Profile</p>  
             </Link>
             )}
 
@@ -47,8 +47,8 @@ function Header({isLoggedIn, setIsLoggedIn, setUserInformation}){
               <p>Shared Archives</p>
             </Link>
             )}  
-             {isLoggedIn && (<Link to="/createPost">
-              <p>Post</p>
+             {isLoggedIn && (<Link to="/create-post">
+              <p>Create Post</p>
             </Link>
             )}  
 

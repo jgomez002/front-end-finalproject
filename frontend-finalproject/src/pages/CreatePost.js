@@ -1,14 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import CreatePostForm from "../components/CreatePostForm";
 
-function CreatePost({caption, userId, userName, imageSrc, imageAlt }) {
+function CreatePost({
+    isLoading, 
+    isLoggedIn, 
+    userInformation, 
+    setIsLoggedIn, 
+    setUserInformation}) {
+       
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if(!isLoggedIn && !isLoading) return navigate('/login');
+    }, [isLoading, isLoggedIn, navigate]);
+
     return(
         <>
-        <div className="imagePost-wrapper">
-            <img src={imageSrc} alt={imageAlt}/>
-            <p className="Caption">{caption}</p>
-            <p> @{" "} 
-            <Link to={`user/${userId}`}>{userName}</Link></p>
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUserInformation= {setUserInformation}/> 
+        <div className="Post-wrapper">
+            <h1>Create Post</h1>
+            <CreatePostForm/>
         </div>
         </>
     );

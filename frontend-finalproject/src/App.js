@@ -8,6 +8,7 @@ import CreateUserPage from "./pages/CreateUser";
 import LoginPage from "./pages/Login";
 import UserProfilePage from "./pages/UserProfile";
 import SharedArchives from "./pages/SharedArchives";
+import CreatePost from "./pages/CreatePost"
 import Feed from "./pages/Feed";
 
 const firebaseConfig = {
@@ -20,7 +21,7 @@ const firebaseConfig = {
 };
 
 function App() {
-const [appInitialized, setappInitialized] = useState (false);
+const [appInitialized, setappInitialized] = useState ();
 const [isLoading, setIsLoading] = useState (true);
 const [isLoggedIn, setIsLoggedIn] = useState (false);
 const [userInformation, setUserInformation] = useState ({});
@@ -28,8 +29,8 @@ console.log({userInformation})
 //ensure app is initialized when its ready to be
   useEffect(()=> {
 //Initialized Firebase
-    initializeApp(firebaseConfig);
-    setappInitialized(true);
+const app = initializeApp(firebaseConfig);
+    setappInitialized(app);
   },[]);
   //Checks to see if user is logged in
   //user loads page, check their status
@@ -95,11 +96,23 @@ console.log({userInformation})
     {
       path: "/feed",
       element: <Feed 
+      app = {appInitialized}
       isLoading={isLoading}
       setIsLoggedIn={setIsLoggedIn}
       setUserInformation={setUserInformation}
       isLoggedIn= {isLoggedIn}
       userInformation={userInformation}
+        />,
+    },
+    {
+      path: "/create-post",
+      element: <CreatePost 
+      app= {appInitialized}
+      isLoggedIn= {isLoggedIn}
+      isLoading = {isLoading}
+      userInformation= {userInformation}
+      setIsLoggedIn={setIsLoggedIn}
+      setUserInformation={setUserInformation}
         />,
     },
   ]);
